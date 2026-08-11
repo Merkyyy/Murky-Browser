@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Murky Browser</title>
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Merkyyy/Murky-Browser/refs/heads/main/logo.png">
+<style>
+:root {
+  --bg: #0f1012;
+  --panel: #16171a;
+  --panel-hover: #1b1c20;
+  --border: rgba(255, 255, 255, 0.07);
+  --text: #f3f3f5;
+  --muted: #8e9098;
+  --dim: #5c5e66;
+  --accent: #d7a64a;
+  --r-lg: 14px;
+  --r-md: 8px;
+  --r-sm: 5px;
+}
+
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+  scrollbar-width: thin;
+  scrollbar-color: #25262b #0f1012;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0f1012;
+}
+::-webkit-scrollbar-thumb {
+  background: #222328;
+  border-radius: 3px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  color: var(--text);
+  background: var(--bg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; border: none; background: none; cursor: pointer; }
+
+.wrap {
+  width: min(1080px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(15, 16, 18, 0.8);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.brand-icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.brand-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.nav-r { display: flex; align-items: center; gap: 4px; }
+.nav-r a {
+  padding: 6px 12px;
+  border-radius: var(--r-sm);
+  color: var(--muted);
+  font-size: 13px;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+.nav-r a:hover { color: var(--text); background: var(--panel); }
+
+.b1 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  border-radius: var(--r-md);
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+.b1:hover {
+  background: var(--panel-hover);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+.b1:active {
+  transform: scale(0.98);
+}
+.b1.p1 {
+  background: var(--text);
+  color: #0f1012;
+  border-color: var(--text);
+  font-weight: 600;
+}
+.b1.p1:hover {
+  background: #e6e6ea;
+  border-color: #e6e6ea;
+}
+
+.h1 {
+  padding: 70px 0 50px;
+}
+
+.g1 {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  align-items: center;
+  gap: 48px;
+}
+
+h1 {
+  font-size: clamp(44px, 5.5vw, 70px);
+  line-height: 0.98;
+  letter-spacing: -2.5px;
+  font-weight: 800;
+  margin-bottom: 18px;
+}
+h1 span { color: var(--dim); }
+
+.hc p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 420px;
+}
+
+.e1 {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.bw {
+  width: 100%;
+  aspect-ratio: 1 / 0.95;
+  max-height: 460px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: #131417;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  animation: f1 0.6s ease both;
+}
+
+.bt {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 14px;
+  background: #17181c;
+  border-bottom: 1px solid var(--border);
+}
+
+.dots { display: flex; gap: 6px; }
+.dots i { width: 8px; height: 8px; border-radius: 50%; background: #2e3036; }
+
+.tb {
+  height: 26px;
+  width: 130px;
+  padding: 0 10px;
+  border-radius: 5px 5px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #1f2025;
+  color: var(--muted);
+  font-size: 11px;
+}
+.tb-img { 
+  width: 14px; 
+  height: 14px; 
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.tls {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  background: #131417;
+  border-bottom: 1px solid var(--border);
+}
+
+.addr {
+  flex: 1;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: #0d0e10;
+  color: var(--dim);
+  font: 11px Consolas, monospace;
+}
+.lk { width: 7px; height: 7px; border-radius: 50%; background: #40424a; }
+
+.bb {
+  flex: 1;
+  display: flex;
+  background: #0f1012;
+}
+
+.sb {
+  width: 44px;
+  padding: 10px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #131417;
+  border-right: 1px solid var(--border);
+}
+.si {
+  height: 30px;
+  border-radius: 5px;
+  background: rgba(255,255,255,0.02);
+}
+.si.a1 { background: rgba(215, 166, 74, 0.12); border: 1px solid rgba(215, 166, 74, 0.2); }
+
+.cnt {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+}
+
+.hl {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+.hl img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.sch {
+  width: 100%;
+  max-width: 300px;
+  height: 34px;
+  margin-top: 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #151619;
+}
+
+.s1 { padding: 70px 0; }
+.sh { margin-bottom: 28px; }
+.sh h2 { font-size: 26px; letter-spacing: -0.8px; font-weight: 700; }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.cd {
+  padding: 22px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.cd:hover {
+  background: var(--panel-hover);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+.ci {
+  width: 34px;
+  height: 34px;
+  border-radius: 7px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--accent);
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+}
+.cd h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+.cd p { color: var(--muted); font-size: 12px; line-height: 1.6; }
+
+.sf {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.fp, .fc {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 28px;
+}
+.fc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.fc h2 { font-size: 24px; letter-spacing: -0.6px; line-height: 1.25; margin-bottom: 10px; }
+.fc p { color: var(--muted); font-size: 13px; line-height: 1.65; }
+
+.mw {
+  height: 190px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: #0f1012;
+}
+.mb {
+  height: 26px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 10px;
+  background: #16171a;
+  border-bottom: 1px solid var(--border);
+}
+.mb i { width: 5px; height: 5px; border-radius: 50%; background: #2e3036; }
+.my {
+  height: calc(100% - 26px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.ml { 
+  width: 32px; 
+  height: 32px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ml img { width: 100%; height: 100%; object-fit: contain; }
+.ln { height: 5px; width: 70px; border-radius: 3px; background: rgba(255, 255, 255, 0.06); }
+.ln.w1 { width: 120px; }
+
+.faq { padding-top: 30px; }
+.fw { max-width: 800px; }
+.fl { border-top: 1px solid var(--border); }
+
+.fi {
+  border-bottom: 1px solid var(--border);
+}
+
+.fs {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  transition: color 0.15s ease;
+}
+.fs::-webkit-details-marker { display: none; }
+.fs:hover { color: var(--accent); }
+
+.fa {
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  color: var(--dim);
+  transition: transform 0.25s ease, color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.fi.is-open .fa {
+  transform: rotate(180deg);
+  color: var(--accent);
+}
+
+.aw {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s ease;
+}
+
+.fi.is-open .aw {
+  grid-template-rows: 1fr;
+}
+
+.an {
+  overflow: hidden;
+}
+
+.an p {
+  margin: 0 6px 18px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.dl {
+  padding: 50px 0;
+  border-top: 1px solid var(--border);
+}
+.db {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.db h2 { font-size: 22px; letter-spacing: -0.4px; margin-bottom: 4px; }
+.db p { color: var(--muted); font-size: 13px; }
+
+footer {
+  padding: 28px 0;
+  border-top: 1px solid var(--border);
+  color: var(--dim);
+  font-size: 12px;
+  text-align: center;
+}
+
+@keyframes f1 {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 860px) {
+  .g1 { grid-template-columns: 1fr; gap: 36px; text-align: center; }
+  .hc p { margin: 0 auto; }
+  .e1 { justify-content: center; }
+  .cards { grid-template-columns: 1fr; }
+  .sf { grid-template-columns: 1fr; }
+  .db { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <div class="brand-icon">
+        <img src="https://raw.githubusercontent.com/Merkyyy/Murky-Browser/refs/heads/main/logo.png" alt="Murky" draggable="false">
+      </div>
+      <span>Murky</span>
+    </a>
+    <nav class="nav-r">
+      <a href="#features">Features</a>
+      <a href="#faq">FAQ</a>
+      <a href="#download">Download</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="h1">
+  <div class="wrap g1">
+    <div class="hc">
+      <h1>Murky<span>.</span></h1>
+      <p>A simple browser equipped with everything you need—built with a clean interface and raw speed to stay completely out of your way.</p>
+      <div class="e1">
+        <a class="b1 p1" href="https://github.com/Merkyyy/Murky-Browser/releases/download/Murky/Murky.Setup.1.0.0.zip" download>Download Murky</a>
+        <a class="b1" href="#features">Explore Features</a>
+      </div>
+    </div>
+
+    <div class="bw">
+      <div class="bt">
+        <div class="dots"><i></i><i></i><i></i></div>
+        <div class="tb">
+          <img class="tb-img" src="https://raw.githubusercontent.com/Merkyyy/Murky-Browser/refs/heads/main/logo.png" alt="" draggable="false">
+          <span>New Workspace</span>
+        </div>
+      </div>
+      <div class="tls">
+        <div class="addr">
+          <div class="lk"></div>
+          <span></span>
+        </div>
+      </div>
+      <div class="bb">
+        <aside class="sb">
+          <div class="si a1"></div>
+          <div class="si"></div>
+          <div class="si"></div>
+        </aside>
+        <div class="cnt">
+          <div class="hl">
+            <img src="https://raw.githubusercontent.com/Merkyyy/Murky-Browser/refs/heads/main/logo.png" alt="Murky Logo" draggable="false">
+          </div>
+          <h3 style="font-size: 17px; font-weight: 600;">Where to, today?</h3>
+          <div class="sch"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s1" id="features">
+  <div class="wrap">
+    <div class="sh">
+      <h2>Everything stays simple.</h2>
+    </div>
+
+    <div class="cards">
+      <div class="cd">
+        <div class="ci">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
+        </div>
+        <h3>Clean by default</h3>
+        <p>Every surface is intentionally sculpted to keep focus on the content you care about.</p>
+      </div>
+      <div class="cd">
+        <div class="ci">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </div>
+        <h3>Quiet controls</h3>
+        <p>Essential utilities remain within reach without cluttering your viewing space.</p>
+      </div>
+      <div class="cd">
+        <div class="ci">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3>Lightweight Core</h3>
+        <p>Built with a zero-bloat footprint that minimizes memory overhead and respects battery life.</p>
+      </div>
+    </div>
+
+    <div class="sf">
+      <div class="fp">
+        <div class="mw">
+          <div class="mb"><i></i><i></i><i></i></div>
+          <div class="my">
+            <div class="ml">
+              <img src="https://raw.githubusercontent.com/Merkyyy/Murky-Browser/refs/heads/main/logo.png" alt="" draggable="false">
+            </div>
+            <div class="ln w1"></div>
+            <div class="ln"></div>
+          </div>
+        </div>
+      </div>
+      <div class="fc">
+        <h2>Fades into the background when you work.</h2>
+        <p>Murky stays subdued so websites, documents, and web applications receive full priority. No loud chrome or unnecessary widgets fighting for attention.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s1 faq" id="faq">
+  <div class="wrap fw">
+    <div class="sh">
+      <h2>Frequently asked questions.</h2>
+    </div>
+
+    <div class="fl">
+      <details class="fi">
+        <summary class="fs">
+          <span>Can I import data from my current browser?</span>
+          <div class="fa">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+        </summary>
+        <div class="aw">
+          <div class="an">
+            <p>Not yet. Full import tools for bookmarks, history, and passwords are currently in active development and will arrive in a near-future update.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="fi">
+        <summary class="fs">
+          <span>Can I use extensions with Murky Browser?</span>
+          <div class="fa">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+        </summary>
+        <div class="aw">
+          <div class="an">
+            <p>Yes, Murky supports loading unpacked local extensions. However, we do not ship with a built-in extension marketplace.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="fi">
+        <summary class="fs">
+          <span>How safe and private is Murky Browser?</span>
+          <div class="fa">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+        </summary>
+        <div class="aw">
+          <div class="an">
+            <p>Murky contains zero tracking telemetry or adware by default. Safety relies on standard secure sandboxing, though overall site security depends on the destinations you visit.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="dl" id="download">
+  <div class="wrap db">
+    <div>
+      <h2>Ready when you are.</h2>
+      <p>Download Murky and keep your browsing clean and focused.</p>
+    </div>
+    <a class="b1 p1" href="https://github.com/Merkyyy/Murky-Browser/releases/download/Murky/Murky.Setup.1.0.0.zip" download>Download Murky</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    &copy; 2026 Murky Browser. All rights reserved.
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll(".fi").forEach((item) => {
+  const summary = item.querySelector(".fs");
+
+  summary.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    if (item.classList.contains("anim")) return;
+    item.classList.add("anim");
+
+    const isOpen = item.classList.contains("is-open");
+
+    if (isOpen) {
+      item.classList.remove("is-open");
+      setTimeout(() => {
+        item.removeAttribute("open");
+        item.classList.remove("anim");
+      }, 250);
+    } else {
+      item.setAttribute("open", "");
+      item.offsetHeight;
+      item.classList.add("is-open");
+      setTimeout(() => {
+        item.classList.remove("anim");
+      }, 250);
+    }
+  });
+});
+</script>
+
+</body>
+</html>
