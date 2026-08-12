@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Murky Browser</title>
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Merkyyy/Murky-Browser/refs/heads/main/logo.png">
+
 <style>
 :root {
   --bg: #0f1012;
@@ -20,10 +21,10 @@
   --r-sm: 5px;
 }
 
-* { 
-  box-sizing: border-box; 
-  margin: 0; 
-  padding: 0; 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
   scrollbar-width: thin;
   scrollbar-color: #25262b #0f1012;
   user-select: none;
@@ -39,15 +40,20 @@ img {
   width: 6px;
   height: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: #0f1012;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #222328;
   border-radius: 3px;
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   color: var(--text);
   background: var(--bg);
@@ -57,8 +63,17 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-a { color: inherit; text-decoration: none; }
-button { font: inherit; border: none; background: none; cursor: pointer; }
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
 
 .wrap {
   width: min(1080px, calc(100% - 48px));
@@ -97,21 +112,31 @@ header {
   align-items: center;
   justify-content: center;
 }
+
 .brand-icon img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-.nav-r { display: flex; align-items: center; gap: 4px; }
+.nav-r {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
 .nav-r a {
   padding: 6px 12px;
   border-radius: var(--r-sm);
   color: var(--muted);
   font-size: 13px;
-  transition: color 0.15s ease, background 0.15s ease;
+  transition: color 0.15s ease, background-color 0.15s ease;
 }
-.nav-r a:hover { color: var(--text); background: var(--panel); }
+
+.nav-r a:hover {
+  color: var(--text);
+  background: var(--panel);
+}
 
 .b1 {
   display: inline-flex;
@@ -122,31 +147,35 @@ header {
   background: var(--panel);
   color: var(--text);
   border-radius: var(--r-md);
-  padding: 9px 16px;
+  padding: 10px 18px;
   font-size: 13px;
   font-weight: 500;
-  transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
 }
+
 .b1:hover {
   background: var(--panel-hover);
   border-color: rgba(255, 255, 255, 0.14);
 }
+
 .b1:active {
   transform: scale(0.98);
 }
+
 .b1.p1 {
   background: var(--text);
   color: #0f1012;
   border-color: var(--text);
   font-weight: 600;
 }
+
 .b1.p1:hover {
   background: #e6e6ea;
   border-color: #e6e6ea;
 }
 
 .h1 {
-  padding: 70px 0 50px;
+  padding: 80px 0 60px;
 }
 
 .g1 {
@@ -163,7 +192,10 @@ h1 {
   font-weight: 800;
   margin-bottom: 18px;
 }
-h1 span { color: var(--dim); }
+
+h1 span {
+  color: var(--dim);
+}
 
 .hc p {
   color: var(--muted);
@@ -189,7 +221,6 @@ h1 span { color: var(--dim); }
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
-  animation: f1 0.6s ease both;
 }
 
 .bt {
@@ -202,8 +233,17 @@ h1 span { color: var(--dim); }
   border-bottom: 1px solid var(--border);
 }
 
-.dots { display: flex; gap: 6px; }
-.dots i { width: 8px; height: 8px; border-radius: 50%; background: #2e3036; }
+.dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dots i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2e3036;
+}
 
 .tb {
   height: 26px;
@@ -217,9 +257,10 @@ h1 span { color: var(--dim); }
   color: var(--muted);
   font-size: 11px;
 }
-.tb-img { 
-  width: 14px; 
-  height: 14px; 
+
+.tb-img {
+  width: 14px;
+  height: 14px;
   object-fit: contain;
   flex-shrink: 0;
 }
@@ -246,7 +287,13 @@ h1 span { color: var(--dim); }
   color: var(--dim);
   font: 11px Consolas, monospace;
 }
-.lk { width: 7px; height: 7px; border-radius: 50%; background: #40424a; }
+
+.lk {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #40424a;
+}
 
 .bb {
   flex: 1;
@@ -263,12 +310,17 @@ h1 span { color: var(--dim); }
   background: #131417;
   border-right: 1px solid var(--border);
 }
+
 .si {
   height: 30px;
   border-radius: 5px;
   background: rgba(255,255,255,0.02);
 }
-.si.a1 { background: rgba(215, 166, 74, 0.12); border: 1px solid rgba(215, 166, 74, 0.2); }
+
+.si.a1 {
+  background: rgba(215, 166, 74, 0.12);
+  border: 1px solid rgba(215, 166, 74, 0.2);
+}
 
 .cnt {
   flex: 1;
@@ -288,6 +340,7 @@ h1 span { color: var(--dim); }
   justify-content: center;
   margin-bottom: 12px;
 }
+
 .hl img {
   width: 100%;
   height: 100%;
@@ -304,31 +357,37 @@ h1 span { color: var(--dim); }
   background: #151619;
 }
 
-.s1 { padding: 70px 0; }
-.sh { margin-bottom: 28px; }
-.sh h2 { font-size: 26px; letter-spacing: -0.8px; font-weight: 700; }
+.s1 {
+  padding: 80px 0;
+}
+
+.sh {
+  margin-bottom: 32px;
+}
+
+.sh h2 {
+  font-size: 28px;
+  letter-spacing: -0.8px;
+  font-weight: 700;
+}
 
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+  gap: 16px;
 }
 
 .cd {
-  padding: 22px;
-  background: var(--panel);
+  padding: 24px;
+  background-color: var(--panel);
   border: 1px solid var(--border);
   border-radius: var(--r-lg);
-  transition: background 0.15s ease, border-color 0.15s ease;
 }
-.cd:hover {
-  background: var(--panel-hover);
-  border-color: rgba(255, 255, 255, 0.12);
-}
+
 .ci {
-  width: 34px;
-  height: 34px;
-  border-radius: 7px;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
   display: grid;
   place-items: center;
   background: rgba(255, 255, 255, 0.03);
@@ -336,38 +395,77 @@ h1 span { color: var(--dim); }
   margin-bottom: 16px;
   border: 1px solid var(--border);
 }
-.cd h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
-.cd p { color: var(--muted); font-size: 12px; line-height: 1.6; }
+
+.cd h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.cd p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
 
 .sf {
-  margin-top: 20px;
+  margin-top: 24px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
+  gap: 16px;
 }
-.fp, .fc {
-  background: var(--panel);
+
+.fp,
+.fc {
+  background-color: var(--panel);
   border: 1px solid var(--border);
   border-radius: var(--r-lg);
-  padding: 28px;
+  padding: 32px;
 }
+
+/* Hover transitions */
+.cd,
+.fp,
+.fc {
+  transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.15s ease !important;
+}
+
+.cd:hover,
+.fp:hover,
+.fc:hover {
+  background-color: var(--panel-hover) !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+}
+
 .fc {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.fc h2 { font-size: 24px; letter-spacing: -0.6px; line-height: 1.25; margin-bottom: 10px; }
-.fc p { color: var(--muted); font-size: 13px; line-height: 1.65; }
+
+.fc h2 {
+  font-size: 24px;
+  letter-spacing: -0.6px;
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+
+.fc p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
 
 .mw {
-  height: 190px;
+  height: 200px;
   border: 1px solid var(--border);
   border-radius: var(--r-md);
   overflow: hidden;
   background: #0f1012;
 }
+
 .mb {
-  height: 26px;
+  height: 28px;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -375,29 +473,61 @@ h1 span { color: var(--dim); }
   background: #16171a;
   border-bottom: 1px solid var(--border);
 }
-.mb i { width: 5px; height: 5px; border-radius: 50%; background: #2e3036; }
+
+.mb i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #2e3036;
+}
+
 .my {
-  height: calc(100% - 26px);
+  height: calc(100% - 28px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
 }
-.ml { 
-  width: 32px; 
-  height: 32px; 
+
+.ml {
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.ml img { width: 100%; height: 100%; object-fit: contain; }
-.ln { height: 5px; width: 70px; border-radius: 3px; background: rgba(255, 255, 255, 0.06); }
-.ln.w1 { width: 120px; }
 
-.faq { padding-top: 30px; }
-.fw { max-width: 800px; }
-.fl { border-top: 1px solid var(--border); }
+.ml img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ln {
+  height: 5px;
+  width: 70px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.ln.w1 {
+  width: 120px;
+}
+
+.faq {
+  padding-top: 100px;
+  padding-bottom: 60px;
+  border-top: 1px solid var(--border);
+}
+
+.fw {
+  max-width: 840px;
+}
+
+.fl {
+  border-top: 1px solid var(--border);
+}
 
 .fi {
   border-bottom: 1px solid var(--border);
@@ -410,14 +540,20 @@ h1 span { color: var(--dim); }
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 18px 6px;
-  font-size: 14px;
+  padding: 22px 8px;
+  font-size: 15px;
   font-weight: 500;
   color: var(--text);
   transition: color 0.15s ease;
 }
-.fs::-webkit-details-marker { display: none; }
-.fs:hover { color: var(--accent); }
+
+.fs::-webkit-details-marker {
+  display: none;
+}
+
+.fs:hover {
+  color: var(--accent);
+}
 
 .fa {
   width: 18px;
@@ -449,62 +585,174 @@ h1 span { color: var(--dim); }
 }
 
 .an p {
-  margin: 0 6px 18px;
+  margin: 0 8px 22px;
   color: var(--muted);
-  font-size: 13px;
-  line-height: 1.65;
+  font-size: 13.5px;
+  line-height: 1.7;
 }
 
 .dl {
-  padding: 50px 0;
+  padding: 110px 0 90px;
   border-top: 1px solid var(--border);
+  background: linear-gradient(180deg, transparent 0%, rgba(22, 23, 26, 0.4) 100%);
 }
+
 .db {
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: var(--r-lg);
-  padding: 34px;
+  padding: 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.db-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 24px;
 }
-.db h2 { font-size: 22px; letter-spacing: -0.4px; margin-bottom: 4px; }
-.db p { color: var(--muted); font-size: 13px; }
+
+.db-title h2 {
+  font-size: 28px;
+  letter-spacing: -0.6px;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.db-title p {
+  color: var(--muted);
+  font-size: 14px;
+  max-width: 480px;
+}
+
+.db-specs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  width: 100%;
+}
+
+.spec-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+}
+
+.spec-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--dim);
+  font-weight: 600;
+}
+
+.spec-val {
+  font-size: 13px;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.dl-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
 
 footer {
-  padding: 28px 0;
+  padding: 32px 0;
   border-top: 1px solid var(--border);
   color: var(--dim);
   font-size: 12px;
   text-align: center;
 }
 
-@keyframes f1 {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+.scroll-item {
+  opacity: 0;
+  transform: scale(0.92) translateY(18px);
+}
+
+.scroll-item.is-visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* ONLY CHANGE: background-color now eases with the scroll animation */
+.scroll-item.animate-in {
+  transition:
+    opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.scroll-item.is-visible:hover {
+  transition: background-color 0.15s ease, border-color 0.15s ease !important;
 }
 
 @media (max-width: 860px) {
-  .g1 { grid-template-columns: 1fr; gap: 36px; text-align: center; }
-  .hc p { margin: 0 auto; }
-  .e1 { justify-content: center; }
-  .cards { grid-template-columns: 1fr; }
-  .sf { grid-template-columns: 1fr; }
-  .db { flex-direction: column; text-align: center; }
+  .g1 {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    text-align: center;
+  }
+
+  .hc p {
+    margin: 0 auto;
+  }
+
+  .e1 {
+    justify-content: center;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .sf {
+    grid-template-columns: 1fr;
+  }
+
+  .db-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .db-specs {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .dl-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
 }
 </style>
 </head>
+
 <body>
 
 <header>
   <div class="wrap nav">
     <a class="brand" href="#top">
       <div class="brand-icon">
-        <img src="https://raw.githubusercontent.com/Merkyyy/Murky-Browser/refs/heads/main/logo.png" alt="Murky" draggable="false">
+        <img
+          src="https://raw.githubusercontent.com/Merkyyy/Murky-Browser/refs/heads/main/logo.png"
+          alt="Murky"
+          draggable="false"
+        >
       </div>
       <span>Murky</span>
     </a>
+
     <nav class="nav-r">
       <a href="#features">Features</a>
       <a href="#faq">FAQ</a>
@@ -517,171 +765,348 @@ footer {
 
 <section class="h1">
   <div class="wrap g1">
-    <div class="hc">
+
+    <div class="hc scroll-item">
       <h1>Murky<span>.</span></h1>
-      <p>A simple browser equipped with everything you need, built with a clean interface and raw speed to stay completely out of your way.</p>
+
+      <p>
+        A simple browser equipped with everything you need, built with a clean interface and raw speed to stay completely out of your way.
+      </p>
+
       <div class="e1">
-        <a class="b1 p1" href="https://github.com/Merkyyy/Murky-Browser/releases/download/1.1.0/Murky.Setup.1.1.0.zip" download>Download Murky</a>
-        <a class="b1" href="#features">Explore Features</a>
+        <a
+          class="b1 p1"
+          href="https://github.com/Merkyyy/Murky-Browser/releases/download/1.1.0/Murky.Setup.1.1.0.zip"
+          download
+        >
+          Download Murky
+        </a>
+
+        <a class="b1" href="#features">
+          Explore Features
+        </a>
       </div>
     </div>
 
-    <div class="bw">
+    <div class="bw scroll-item">
       <div class="bt">
-        <div class="dots"><i></i><i></i><i></i></div>
+        <div class="dots">
+          <i></i>
+          <i></i>
+          <i></i>
+        </div>
+
         <div class="tb">
-          <img class="tb-img" src="https://raw.githubusercontent.com/Merkyyy/Murky-Browser/refs/heads/main/logo.png" alt="" draggable="false">
-          <span>New Workspace</span>
+          <img
+            class="tb-img"
+            src="https://raw.githubusercontent.com/Merkyyy/Murky-Browser/refs/heads/main/logo_amber.png"
+            alt=""
+            draggable="false"
+          >
         </div>
       </div>
+
       <div class="tls">
         <div class="addr">
           <div class="lk"></div>
           <span></span>
         </div>
       </div>
+
       <div class="bb">
         <aside class="sb">
           <div class="si a1"></div>
           <div class="si"></div>
           <div class="si"></div>
         </aside>
+
         <div class="cnt">
           <div class="hl">
-            <img src="https://raw.githubusercontent.com/Merkyyy/Murky-Browser/refs/heads/main/logo.png" alt="Murky Logo" draggable="false">
+            <img
+              src="https://raw.githubusercontent.com/Merkyyy/Murky-Browser/refs/heads/main/logo_amber.png"
+              alt="Murky Preview Logo"
+              draggable="false"
+            >
           </div>
-          <h3 style="font-size: 17px; font-weight: 600;">Where to, today?</h3>
+
+          <h3 style="font-size: 17px; font-weight: 600;">
+            Where to, today?
+          </h3>
+
           <div class="sch"></div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
 <section class="s1" id="features">
   <div class="wrap">
-    <div class="sh">
+
+    <div class="sh scroll-item">
       <h2>Everything stays simple.</h2>
     </div>
 
     <div class="cards">
-      <div class="cd">
+
+      <div class="cd scroll-item">
         <div class="ci">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M3 9h18"/>
+          </svg>
         </div>
+
         <h3>Clean by default</h3>
-        <p>Every surface is intentionally sculpted to keep focus on the content you care about.</p>
+
+        <p>
+          Every surface is intentionally sculpted to keep focus on the content you care about.
+        </p>
       </div>
-      <div class="cd">
+
+      <div class="cd scroll-item">
         <div class="ci">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
         </div>
+
         <h3>Quiet controls</h3>
-        <p>Essential utilities remain within reach without cluttering your viewing space.</p>
+
+        <p>
+          Essential utilities remain within reach without cluttering your viewing space.
+        </p>
       </div>
-      <div class="cd">
+
+      <div class="cd scroll-item">
         <div class="ci">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
         </div>
+
         <h3>Lightweight Core</h3>
-        <p>Built with a zero-bloat footprint that minimizes memory overhead and respects battery life.</p>
+
+        <p>
+          Built with a zero-bloat footprint that minimizes memory overhead and respects battery life.
+        </p>
       </div>
+
     </div>
 
     <div class="sf">
-      <div class="fp">
+
+      <div class="fp scroll-item">
         <div class="mw">
-          <div class="mb"><i></i><i></i><i></i></div>
+          <div class="mb">
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+
           <div class="my">
             <div class="ml">
-              <img src="https://raw.githubusercontent.com/Merkyyy/Murky-Browser/refs/heads/main/logo.png" alt="" draggable="false">
+              <img
+                src="https://raw.githubusercontent.com/Merkyyy/Murky-Browser/refs/heads/main/logo_amber.png"
+                alt=""
+                draggable="false"
+              >
             </div>
+
             <div class="ln w1"></div>
             <div class="ln"></div>
           </div>
         </div>
       </div>
-      <div class="fc">
+
+      <div class="fc scroll-item">
         <h2>Fades into the background when you work.</h2>
-        <p>Murky stays subdued so websites, documents, and web applications receive full priority. No loud chrome or unnecessary widgets fighting for attention.</p>
+
+        <p>
+          Murky stays subdued so websites, documents, and web applications receive full priority. No loud chrome or unnecessary widgets fighting for attention.
+        </p>
       </div>
+
     </div>
   </div>
 </section>
 
-<section class="s1 faq" id="faq">
+<section class="faq" id="faq">
   <div class="wrap fw">
-    <div class="sh">
+
+    <div class="sh scroll-item">
       <h2>Frequently asked questions.</h2>
     </div>
 
     <div class="fl">
-      <details class="fi">
+
+      <details class="fi scroll-item">
         <summary class="fs">
           <span>Why do I see a "Windows protected your PC" warning?</span>
+
           <div class="fa">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
           </div>
         </summary>
+
         <div class="aw">
           <div class="an">
-            <p>Windows SmartScreen automatically flags newer independent software that lacks an expensive publisher certificate. Murky is completely safe, transparent, and malware-free. To install, simply click <strong>More info</strong> on the popup and select <strong>Run anyway</strong>.</p>
+            <p>
+              Windows SmartScreen automatically flags newer independent software that lacks an expensive publisher certificate. Murky is completely safe, transparent, and malware-free. To install, simply click <strong>More info</strong> on the popup and select <strong>Run anyway</strong>.
+            </p>
           </div>
         </div>
       </details>
 
-      <details class="fi">
+      <details class="fi scroll-item">
+        <summary class="fs">
+          <span>Is Murky Browser completely open-source?</span>
+
+          <div class="fa">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </div>
+        </summary>
+
+        <div class="aw">
+          <div class="an">
+            <p>
+              Yes. You can review all source code, release tags, and build histories on our official GitHub repository. We encourage community feedback and contributions.
+            </p>
+          </div>
+        </div>
+      </details>
+
+      <details class="fi scroll-item">
         <summary class="fs">
           <span>Can I import data from my current browser?</span>
+
           <div class="fa">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
           </div>
         </summary>
+
         <div class="aw">
           <div class="an">
-            <p>Not yet. Full import tools for bookmarks, history, and passwords are currently in active development and will arrive in a near-future update.</p>
+            <p>
+              Not yet. Full import tools for bookmarks, history, and passwords are currently in active development and will arrive in a near-future update.
+            </p>
           </div>
         </div>
       </details>
 
-      <details class="fi">
+      <details class="fi scroll-item">
         <summary class="fs">
           <span>Can I use extensions with Murky Browser?</span>
+
           <div class="fa">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
           </div>
         </summary>
+
         <div class="aw">
           <div class="an">
-            <p>Yes, Murky supports loading unpacked local extensions. However, we do not ship with a built-in extension marketplace.</p>
+            <p>
+              Yes, Murky supports loading unpacked local extensions. However, we do not ship with a built-in extension marketplace.
+            </p>
           </div>
         </div>
       </details>
 
-      <details class="fi">
+      <details class="fi scroll-item">
         <summary class="fs">
-          <span>How safe and private is Murky Browser?</span>
+          <span>How often are updates released?</span>
+
           <div class="fa">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
           </div>
         </summary>
+
         <div class="aw">
           <div class="an">
-            <p>Murky contains zero tracking telemetry or adware by default. Safety relies on standard secure sandboxing, though overall site security depends on the destinations you visit.</p>
+            <p>
+              We push stability and feature patches as soon as they are tested. Releases are posted directly to our GitHub repository with detailed changelogs.
+            </p>
           </div>
         </div>
       </details>
+
+      <details class="fi scroll-item">
+        <summary class="fs">
+          <span>How safe and private is Murky Browser?</span>
+
+          <div class="fa">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </div>
+        </summary>
+
+        <div class="aw">
+          <div class="an">
+            <p>
+              Murky contains zero tracking telemetry or adware by default. Safety relies on standard secure sandboxing, though overall site security depends on the destinations you visit.
+            </p>
+          </div>
+        </div>
+      </details>
+
     </div>
   </div>
 </section>
 
 <section class="dl" id="download">
-  <div class="wrap db">
-    <div>
-      <h2>Ready when you are.</h2>
-      <p>Download Murky and keep your browsing clean and focused.</p>
+  <div class="wrap">
+
+    <div class="db scroll-item">
+
+      <div class="db-top">
+
+        <div class="db-title">
+          <h2>Ready when you are.</h2>
+
+          <p>
+            Get the latest standalone installer for Windows. Clean, fast, and completely free of tracking or ad bundles.
+          </p>
+        </div>
+
+        <div class="dl-actions">
+          <a
+            class="b1 p1"
+            href="https://github.com/Merkyyy/Murky-Browser/releases/download/1.1.0/Murky.Setup.1.1.0.zip"
+            download
+          >
+            Download for Windows
+          </a>
+        </div>
+
+      </div>
+
+      <div class="db-specs">
+
+        <div class="spec-item">
+          <span class="spec-label">Compatibility</span>
+          <span class="spec-val">Windows 10 / 11 (64-bit)</span>
+        </div>
+
+        <div class="spec-item">
+          <span class="spec-label">Version</span>
+          <span class="spec-val">v1.1.0</span>
+        </div>
+
+      </div>
     </div>
-    <a class="b1 p1" href="https://github.com/Merkyyy/Murky-Browser/releases/download/1.1.0/Murky.Setup.1.1.0.zip" download>Download Murky</a>
   </div>
 </section>
 
@@ -694,33 +1119,143 @@ footer {
 </footer>
 
 <script>
+
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+
+  anchor.addEventListener("click", (e) => {
+
+    e.preventDefault();
+
+    const targetId = anchor.getAttribute("href").substring(1);
+
+    if (targetId === "top") {
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+      return;
+    }
+
+    const targetElement = document.getElementById(targetId);
+
+    if (targetElement) {
+
+      targetElement.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+    }
+
+  });
+
+});
+
+
 document.querySelectorAll(".fi").forEach((item) => {
+
   const summary = item.querySelector(".fs");
 
   summary.addEventListener("click", (e) => {
+
     e.preventDefault();
 
     if (item.classList.contains("anim")) return;
+
     item.classList.add("anim");
 
     const isOpen = item.classList.contains("is-open");
 
     if (isOpen) {
+
       item.classList.remove("is-open");
+
       setTimeout(() => {
+
         item.removeAttribute("open");
         item.classList.remove("anim");
+
       }, 250);
+
     } else {
+
       item.setAttribute("open", "");
+
       item.offsetHeight;
+
       item.classList.add("is-open");
+
       setTimeout(() => {
+
         item.classList.remove("anim");
+
       }, 250);
+
     }
+
   });
+
 });
+
+
+window.addEventListener("DOMContentLoaded", () => {
+
+  const items = document.querySelectorAll(".scroll-item");
+
+  items.forEach((el) => {
+
+    const rect = el.getBoundingClientRect();
+
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      el.classList.add("is-visible");
+    }
+
+  });
+
+  const observerOptions = {
+    root: null,
+    rootMargin: "0px 0px -20px 0px",
+    threshold: 0.05
+  };
+
+  const scrollObserver = new IntersectionObserver((entries) => {
+
+    entries.forEach((entry) => {
+
+      if (entry.isIntersecting) {
+
+        entry.target.classList.add(
+          "animate-in",
+          "is-visible"
+        );
+
+      } else {
+
+        const rect = entry.target.getBoundingClientRect();
+
+        if (rect.top > 0) {
+
+          entry.target.classList.remove(
+            "is-visible",
+            "animate-in"
+          );
+
+        }
+
+      }
+
+    });
+
+  }, observerOptions);
+
+  items.forEach((el) => {
+    scrollObserver.observe(el);
+  });
+
+});
+
 </script>
 
 </body>
