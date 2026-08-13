@@ -4,21 +4,29 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Murky Browser</title>
-<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Merkyyy/Murky-Browser/refs/heads/main/logo.png">
 
 <meta name="title" content="Murky Browser">
 <meta name="description" content="A simple browser equipped with everything you need, built with a clean interface and raw speed to stay completely out of your way.">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#d7a64a">
 
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://murkybrowser.xyz/">
+<meta property="og:site_name" content="Murky Browser">
 <meta property="og:title" content="Murky Browser">
 <meta property="og:description" content="A simple browser equipped with everything you need, built with a clean interface and raw speed to stay completely out of your way.">
 <meta property="og:image" content="https://raw.githubusercontent.com/Merkyyy/Murky-Browser/refs/heads/main/logo.png">
+<meta property="og:image:secure_url" content="https://raw.githubusercontent.com/Merkyyy/Murky-Browser/refs/heads/main/logo.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://murkybrowser.xyz/">
 <meta name="twitter:title" content="Murky Browser">
 <meta name="twitter:description" content="A simple browser equipped with everything you need, built with a clean interface and raw speed to stay completely out of your way.">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Merkyyy/Murky-Browser/refs/heads/main/logo.png">
+
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Merkyyy/Murky-Browser/refs/heads/main/logo.png">
 
 <style>
 :root {
@@ -1172,81 +1180,54 @@ fetch('https://api.github.com/repos/Merkyyy/Murky-Browser/releases/latest')
   .catch(() => {});
 
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-
   anchor.addEventListener("click", (e) => {
-
     e.preventDefault();
-
     const targetId = anchor.getAttribute("href").substring(1);
 
     if (targetId === "top") {
-
       window.scrollTo({
         top: 0,
         behavior: "smooth"
       });
-
       return;
     }
 
     const targetElement = document.getElementById(targetId);
-
     if (targetElement) {
-
       targetElement.scrollIntoView({
         behavior: "smooth",
         block: "start"
       });
-
     }
-
   });
-
 });
 
 document.querySelectorAll(".fi").forEach((item) => {
-
   const summary = item.querySelector(".fs");
 
   summary.addEventListener("click", (e) => {
-
     e.preventDefault();
 
     if (item.classList.contains("anim")) return;
-
     item.classList.add("anim");
 
     const isOpen = item.classList.contains("is-open");
 
     if (isOpen) {
-
       item.classList.remove("is-open");
-
       setTimeout(() => {
-
         item.removeAttribute("open");
         item.classList.remove("anim");
-
       }, 250);
-
     } else {
-
       item.setAttribute("open", "");
-
       item.offsetHeight;
-
       item.classList.add("is-open");
-
       setTimeout(() => {
-
         item.classList.remove("anim");
-
       }, 250);
-
     }
-
   });
-
 });
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -1255,13 +1236,10 @@ window.addEventListener("DOMContentLoaded", () => {
   const items = document.querySelectorAll(".scroll-item");
 
   items.forEach((el) => {
-
     const rect = el.getBoundingClientRect();
-
     if (rect.top < window.innerHeight && rect.bottom > 0) {
       el.classList.add("is-visible");
     }
-
   });
 
   const observerOptions = {
@@ -1271,39 +1249,27 @@ window.addEventListener("DOMContentLoaded", () => {
   };
 
   const scrollObserver = new IntersectionObserver((entries) => {
-
     entries.forEach((entry) => {
-
       if (entry.isIntersecting) {
-
         entry.target.classList.add(
           "animate-in",
           "is-visible"
         );
-
       } else {
-
         const rect = entry.target.getBoundingClientRect();
-
         if (rect.top > 0) {
-
           entry.target.classList.remove(
             "is-visible",
             "animate-in"
           );
-
         }
-
       }
-
     });
-
   }, observerOptions);
 
   items.forEach((el) => {
     scrollObserver.observe(el);
   });
-
 });
 </script>
 
