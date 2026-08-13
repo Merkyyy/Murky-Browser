@@ -138,6 +138,22 @@ header {
   background: var(--panel);
 }
 
+/* Page entrance animation on main container */
+main {
+  animation: siteIntro 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes siteIntro {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .b1 {
   display: inline-flex;
   align-items: center;
@@ -423,7 +439,6 @@ h1 span {
   padding: 32px;
 }
 
-/* Hover transitions */
 .cd,
 .fp,
 .fc {
@@ -685,7 +700,6 @@ footer {
   transform: scale(1) translateY(0);
 }
 
-/* ONLY CHANGE: background-color now eases with the scroll animation */
 .scroll-item.animate-in {
   transition:
     opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
@@ -774,9 +788,10 @@ footer {
       </p>
 
       <div class="e1">
+        <!-- Always downloads latest asset named Murky.Setup.zip -->
         <a
           class="b1 p1"
-          href="https://github.com/Merkyyy/Murky-Browser/releases/download/1.1.0/Murky.Setup.1.1.0.zip"
+          href="https://github.com/Merkyyy/Murky-Browser/releases/latest/download/Murky.Setup.zip"
           download
         >
           Download Murky
@@ -1082,9 +1097,10 @@ footer {
         </div>
 
         <div class="dl-actions">
+          <!-- Always downloads latest asset named Murky.Setup.zip -->
           <a
             class="b1 p1"
-            href="https://github.com/Merkyyy/Murky-Browser/releases/download/1.1.0/Murky.Setup.1.1.0.zip"
+            href="https://github.com/Merkyyy/Murky-Browser/releases/latest/download/Murky.Setup.zip"
             download
           >
             Download for Windows
@@ -1102,7 +1118,8 @@ footer {
 
         <div class="spec-item">
           <span class="spec-label">Version</span>
-          <span class="spec-val">v1.1.0</span>
+          <!-- Dynamic fetch badge via JS -->
+          <span class="spec-val" id="latest-version-badge">Latest Release</span>
         </div>
 
       </div>
@@ -1119,6 +1136,22 @@ footer {
 </footer>
 
 <script>
+// Disable browser scroll restoration and reset scroll position on load
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
+// Fetch the version tag dynamically from GitHub API to display in the specs box
+fetch('https://api.github.com/repos/Merkyyy/Murky-Browser/releases/latest')
+  .then(res => res.json())
+  .then(data => {
+    if (data.tag_name) {
+      const badge = document.getElementById('latest-version-badge');
+      if (badge) badge.textContent = data.tag_name;
+    }
+  })
+  .catch(() => {});
 
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 
@@ -1201,6 +1234,7 @@ document.querySelectorAll(".fi").forEach((item) => {
 
 
 window.addEventListener("DOMContentLoaded", () => {
+  window.scrollTo(0, 0);
 
   const items = document.querySelectorAll(".scroll-item");
 
