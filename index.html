@@ -705,8 +705,9 @@ h1 span {
 
 .dl-actions {
   display: flex;
-  align-items: center;
-  gap: 16px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
   flex-shrink: 0;
 }
 
@@ -777,6 +778,112 @@ footer {
     justify-content: flex-start;
   }
 }
+.download-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.download-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.download-popup {
+  width: min(440px, 100%);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  transform: scale(0.88);
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+}
+
+.download-modal.is-open .download-popup {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.download-popup-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 22px;
+  border-bottom: 1px solid var(--border);
+}
+
+.download-popup-head h2 {
+  font-size: 18px;
+  font-weight: 650;
+  letter-spacing: -0.3px;
+}
+
+.download-close {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-sm);
+  color: var(--dim);
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.download-close:hover {
+  color: var(--text);
+  background: var(--panel-hover);
+}
+
+.download-options {
+  padding: 4px 22px;
+}
+
+.download-option {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  text-align: left;
+}
+
+.download-option + .download-option {
+  border-top: 1px solid var(--border);
+}
+
+.download-option-info {
+  min-width: 0;
+}
+
+.download-option-name {
+  display: block;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.download-option-version {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.download-option .b1 {
+  flex-shrink: 0;
+}
+
 </style>
 </head>
 
@@ -816,13 +923,9 @@ footer {
       </p>
 
       <div class="e1">
-        <a
-          class="b1 p1"
-          href="https://github.com/Merkyyy/Murky-Browser/releases/latest/download/Murky.Setup.zip"
-          download
-        >
+        <button class="b1 p1" id="download-murky">
           Download Murky
-        </a>
+        </button>
 
         <a class="b1" href="#features">
           Explore Features
@@ -1119,17 +1222,16 @@ footer {
           <h2>Ready when you are.</h2>
 
           <p>
-            Get the latest standalone installer for Windows. Clean, fast, and completely free of tracking or ad bundles.
+            Get the latest standalone build for Windows or Linux. Clean, fast, and completely free of tracking or ad bundles.
           </p>
         </div>
 
         <div class="dl-actions">
-          <a
-            class="b1 p1"
-            href="https://github.com/Merkyyy/Murky-Browser/releases/latest/download/Murky.Setup.zip"
-            download
-          >
+          <a class="b1 p1" id="download-windows">
             Download for Windows
+          </a>
+          <a class="b1 p1" id="download-linux">
+            Download for Linux
           </a>
         </div>
 
@@ -1139,7 +1241,7 @@ footer {
 
         <div class="spec-item">
           <span class="spec-label">Compatibility</span>
-          <span class="spec-val">Windows 10 / 11 (64-bit)</span>
+          <span class="spec-val">Windows 10 / 11 (64-bit) &amp; Linux (64-bit)</span>
         </div>
 
         <div class="spec-item">
@@ -1152,7 +1254,40 @@ footer {
   </div>
 </section>
 
+
+
+
+
 </main>
+
+<div class="download-modal" id="download-modal" aria-hidden="true">
+  <div class="download-popup" role="dialog" aria-modal="true" aria-labelledby="download-title">
+    <div class="download-popup-head">
+      <h2 id="download-title">Download Murky</h2>
+      <button class="download-close" id="download-close" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M6 6l12 12M18 6L6 18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="download-options">
+      <div class="download-option">
+        <div class="download-option-info">
+          <span class="download-option-name">Windows <span class="download-option-version" id="popup-windows-version">Loading...</span></span>
+        </div>
+        <a class="b1 p1" id="popup-windows">Download</a>
+      </div>
+
+      <div class="download-option">
+        <div class="download-option-info">
+          <span class="download-option-name">Linux <span class="download-option-version" id="popup-linux-version">Loading...</span></span>
+        </div>
+        <a class="b1 p1" id="popup-linux">Download</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <footer>
   <div class="wrap">
@@ -1166,15 +1301,147 @@ if ('scrollRestoration' in history) {
 }
 window.scrollTo(0, 0);
 
-fetch('https://api.github.com/repos/Merkyyy/Murky-Browser/releases/latest')
-  .then(res => res.json())
-  .then(data => {
-    if (data.tag_name) {
-      const badge = document.getElementById('latest-version-badge');
-      if (badge) badge.textContent = data.tag_name;
+const releaseApi = 'https://api.github.com/repos/Merkyyy/Murky-Browser/releases?per_page=100';
+const releasePattern = /^(\d+)\.(\d+)\.(\d+)-(Windows|Linux)$/;
+
+function versionValue(tag) {
+  const match = tag.match(releasePattern);
+  if (!match) return null;
+  return {
+    tag,
+    version: `${match[1]}.${match[2]}.${match[3]}`,
+    type: match[4],
+    value: [Number(match[1]), Number(match[2]), Number(match[3])]
+  };
+}
+
+function newerRelease(a, b) {
+  if (!a) return b;
+  if (!b) return a;
+
+  for (let i = 0; i < 3; i++) {
+    if (a.value[i] !== b.value[i]) {
+      return a.value[i] > b.value[i] ? a : b;
+    }
+  }
+
+  return a;
+}
+
+async function getMurkyReleases() {
+  const releases = [];
+  let page = 1;
+
+  while (page <= 10) {
+    const res = await fetch(`${releaseApi}&page=${page}`);
+    if (!res.ok) throw new Error('Could not load releases');
+
+    const data = await res.json();
+    if (!Array.isArray(data) || !data.length) break;
+
+    releases.push(...data);
+
+    if (data.length < 100) break;
+    page++;
+  }
+
+  const latest = { Windows: null, Linux: null };
+
+  releases.forEach((release) => {
+    const parsed = versionValue(release.tag_name || '');
+    if (!parsed) return;
+
+    const assets = release.assets || [];
+    const asset = assets.find(item =>
+      item.name.toLowerCase() === 'murky.setup.zip'
+    );
+
+    if (!asset) return;
+
+    latest[parsed.type] = newerRelease(latest[parsed.type], {
+      ...parsed,
+      url: asset.browser_download_url
+    });
+  });
+
+  return latest;
+}
+
+const downloadModal = document.getElementById('download-modal');
+const downloadMurky = document.getElementById('download-murky');
+const downloadClose = document.getElementById('download-close');
+
+function openDownloadModal() {
+  if (!downloadModal) return;
+  downloadModal.classList.add('is-open');
+  downloadModal.setAttribute('aria-hidden', 'false');
+}
+
+function closeDownloadModal() {
+  if (!downloadModal) return;
+  downloadModal.classList.remove('is-open');
+  downloadModal.setAttribute('aria-hidden', 'true');
+}
+
+downloadMurky?.addEventListener('click', openDownloadModal);
+downloadClose?.addEventListener('click', closeDownloadModal);
+
+downloadModal?.addEventListener('click', (e) => {
+  if (e.target === downloadModal) closeDownloadModal();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeDownloadModal();
+});
+
+getMurkyReleases()
+  .then((latest) => {
+    const badge = document.getElementById('latest-version-badge');
+    const windows = latest.Windows;
+    const linux = latest.Linux;
+
+    if (badge) {
+      const versions = [windows, linux].filter(Boolean).map(item => item.version);
+      badge.textContent = versions.length ? versions.join(' / ') : 'Unavailable';
+    }
+
+    const windowsLink = document.getElementById('download-windows');
+    const linuxLink = document.getElementById('download-linux');
+    const popupWindows = document.getElementById('popup-windows');
+    const popupLinux = document.getElementById('popup-linux');
+    const popupWindowsVersion = document.getElementById('popup-windows-version');
+    const popupLinuxVersion = document.getElementById('popup-linux-version');
+
+    if (windows) {
+      windowsLink.href = windows.url;
+      popupWindows.href = windows.url;
+      popupWindowsVersion.textContent = windows.version;
+    } else {
+      popupWindowsVersion.textContent = 'Unavailable';
+      windowsLink.removeAttribute('href');
+      popupWindows.removeAttribute('href');
+    }
+
+    if (linux) {
+      linuxLink.href = linux.url;
+      popupLinux.href = linux.url;
+      popupLinuxVersion.textContent = linux.version;
+    } else {
+      popupLinuxVersion.textContent = 'Unavailable';
+      linuxLink.removeAttribute('href');
+      popupLinux.removeAttribute('href');
     }
   })
-  .catch(() => {});
+  .catch((error) => {
+    console.error('Murky release lookup failed:', error);
+    const badge = document.getElementById('latest-version-badge');
+    if (badge) badge.textContent = 'Unavailable';
+
+    ['popup-windows-version', 'popup-linux-version'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = 'Unavailable';
+    });
+  });
 
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", (e) => {
